@@ -1,7 +1,11 @@
 import Head from "next/head";
 import { useState } from "react";
 import styles from "./index.module.css";
-import 'semantic-ui-css/semantic.min.css';
+import '@coreui/coreui/dist/css/coreui.min.css';
+import { CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/react';
+import Log from "./entries.js";
+//import "./entries.json";
+
 
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
@@ -56,6 +60,11 @@ export default function Home() {
           <input type="submit" value="Generate diary entry" />
         </form>
         <div className={styles.result}>{result}</div>
+        </div>
+        <div className={styles.log}>
+            <CAccordion activeItemKey={1}>
+            <Log />
+            </CAccordion>
         </div>
       </main>
     </div>

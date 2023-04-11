@@ -8,6 +8,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@coreui/coreui": "^4.2.6",
+    "@coreui/react": "^4.7.0",
     "next": "^13.1.1",
     "openai": "^3.1.0",
     "react": "^18.2.0",
@@ -17,5 +19,12 @@
   },
   "engines": {
     "node": ">=14.6.0"
-  }
+  },
+  "browser": {
+  "colors": false,
+  "events": "eventemitter3",
+  "checkForModuleDuplicates": false,
+  "url": "./shims/url",
+  "tracer": false
+}
 }

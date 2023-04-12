@@ -1,16 +1,28 @@
 import Head from "next/head";
-import { useState } from "react";
+import { useState, useStickyState, useEffect } from "react";
 import styles from "./index.module.css";
 import '@coreui/coreui/dist/css/coreui.min.css';
 import { CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/react';
 import Log from "./entries.js";
+import entries from "./entries.json";
 //import "./entries.json";
+
 
 
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
-  //console.log(result);
+
+  // function useStickyState(defaultValue, key) {
+  //     const [value, setValue] = useState(() => {
+  //       const stickyValue = window.localStorage.getItem(key);
+  //       return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
+  //     });
+  //     useEffect(() => {
+  //       window.localStorage.setItem(key, JSON.stringify(value));
+  //     }, [key, value]);
+  //     return [value, setValue];
+  //   }
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -30,11 +42,33 @@ export default function Home() {
 
       setResult(data.result);
       setAnimalInput("");
+
+
+      if (typeof window !== "undefined") {
+      console.log("BATMAN");
+      //let existingEntries = JSON.parse(localStorage.getItem("entries")) || [];
+      const newEntry = {
+        author: "Lu",
+        session: entries.length+1,
+        content: data.result
+        };
+      //const updatedEntries = newEntry;
+      //localStorage.setItem("entries", JSON.stringify(updatedEntries));
+      console.log("newEntry:");
+
+      entries.push(newEntry);
+
+      }
+
+
+
+
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
     }
+
   }
 
   return (
@@ -59,7 +93,7 @@ export default function Home() {
           />
           <input type="submit" value="Generate diary entry" />
         </form>
-        <div className={styles.result}>{result}</div>
+        <div className={styles.result}></div>
         </div>
         <div className={styles.log}>
             <CAccordion activeItemKey={1}>

@@ -1,21 +1,16 @@
 import React, { Component } from "react";
 import entries from "./entries.json";
-import Entry from "./accordion.js";
+import { CAccordion, CAccordionItem, CAccordionHeader, CAccordionBody} from '@coreui/react';
 
-class Log extends Component {
-  render() {
-    var list = entries.map((entry, index) => {
-      console.log("list:"+index+entry.author);
-      return
-        <Entry
-          key={index}
-          author={entry.author}
-          session={entry.session}
-          content={entry.content}
-        />
-    });
-    console.log("list2:"+list);
+export default function Log() {
+  var list = [];
+  entries.forEach((entry, i) => {
+    list.push(
+      <CAccordionItem itemKey={i}>
+        <CAccordionHeader>Session {entry.session}</CAccordionHeader>
+        <CAccordionBody>{entry.content}</CAccordionBody>
+      </CAccordionItem>
+    )
+  });
     return list;
-  }
 }
-export default Log;

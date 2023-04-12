@@ -70,3 +70,10 @@ export default function Home() {
     </div>
   );
 }
+
+
+//TODO:
+// adding entries
+// deleting entries
+// style input field
+// style in general

@@ -83,9 +83,8 @@ export default function Home() {
         <img src="/lu.jpg" className={styles.icon} />
         <h3 className="prompt">What happened?</h3>
         <form onSubmit={onSubmit}>
-          <input
+          <textarea
             type="text"
-            contentEditable="true"
             name="animal"
             placeholder="Enter session notes"
             value={animalInput}
@@ -107,7 +106,7 @@ export default function Home() {
 
 
 //TODO:
-// adding entries
+// saving entries
 // deleting entries
 // style input field
 // style in general
